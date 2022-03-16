@@ -1,18 +1,19 @@
 import React from "react";
 import ModalDialog from "./ModalDialog";
 import TodoItem from "./TodoItem";
+import { Table } from "semantic-ui-react";
 
-export default class Table extends React.Component {
+export default class TodoList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedItem: null,
+      selectedItem: { isDelete: false },
       deleteDialogValue: false
     };
   }
-  itemSelected = ({ id, order, title, completed, createdOn }) => {
+  itemSelected = ({ id, order, title, completed, createdOn, isDelete }) => {
     this.setState({
-      selectedItem: { id, order, title, completed, createdOn }
+      selectedItem: { id, order, title, completed, createdOn, isDelete }
     });
   };
   render() {
@@ -21,17 +22,17 @@ export default class Table extends React.Component {
     if (items && items.length > 0) {
       return (
         <>
-          <table className="table table-secondary">
-            <thead>
-              <tr>
-                <th scope="col">Order</th>
-                <th scope="col">Title</th>
-                <th scope="col">Completed</th>
-                <th scope="col">Created Date</th>
-                <th scope="col">Delete</th>
-              </tr>
-            </thead>
-            <tbody>
+          <Table celled selectable>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell>Order</Table.HeaderCell>
+                <Table.HeaderCell>Title</Table.HeaderCell>
+                <Table.HeaderCell>Completed</Table.HeaderCell>
+                <Table.HeaderCell>Created Date</Table.HeaderCell>
+                <Table.HeaderCell>Delete</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
               {items.map((item) => (
                 <TodoItem
                   key={item.id}
@@ -39,11 +40,11 @@ export default class Table extends React.Component {
                   onSelected={this.itemSelected}
                 />
               ))}
-            </tbody>
-          </table>
+            </Table.Body>
+          </Table>
           <ModalDialog
             title="Title"
-            text="Content"
+            text="Are you sure you want to delete"
             cancelText="Cancel"
             saveText="OK"
             selectedItem={this.state.selectedItem}

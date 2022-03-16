@@ -1,18 +1,17 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button } from "react-bootstrap";
-import HelloWord from "./components/HelloWord";
 import TodoList from "./components/TodoList";
 import { items } from "./MockItems";
+import { Container } from "semantic-ui-react";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header"></header>
-      <div className="App-content">
+      <Container className="App-header"></Container>
+      <Container className="App-content">
         <TodoList items={items} />
-      </div>
-      <div className="Aspp-footer"></div>
+      </Container>
+      <Container className="App-footer container"></Container>
     </div>
   );
 }

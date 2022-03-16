@@ -1,16 +1,17 @@
 import React from "react";
 import ClearIcon from "@mui/icons-material/Clear";
+import { Table } from "semantic-ui-react";
 
 export default class TodoItem extends React.Component {
   render() {
     const { item, onSelected } = this.props;
     return (
-      <tr>
-        <td>{item.order}</td>
-        <td>{item.title}</td>
-        <td>{item.completed}</td>
-        <td>{item.createdOn}</td>
-        <td>
+      <Table.Row>
+        <Table.Cell>{item.order}</Table.Cell>
+        <Table.Cell>{item.title}</Table.Cell>
+        <Table.Cell>{item.completed}</Table.Cell>
+        <Table.Cell>{item.createdOn}</Table.Cell>
+        <Table.Cell>
           <button
             className="btn btn-outline-danger"
             type="button"
@@ -21,14 +22,15 @@ export default class TodoItem extends React.Component {
                 id: item.id,
                 order: item.order,
                 title: item.title,
-                completed: item.completed
+                completed: item.completed,
+                isDelete: true
               })
             }
           >
             <ClearIcon></ClearIcon>
           </button>
-        </td>
-      </tr>
+        </Table.Cell>
+      </Table.Row>
     );
   }
 }

@@ -2,11 +2,11 @@ import React from "react";
 
 export default class ModalDialog extends React.Component {
   render() {
-    const { title, text, cancelText, saveText } = this.props;
-    if (title && text && cancelText && saveText) {
+    const { title, text, cancelText, saveText, selectedItem } = this.props;
+    if ((title && text && cancelText && saveText, selectedItem.isDelete)) {
       return (
         <div
-          className="modal-dialog modal-dialog-centered"
+          className="modal-dialog-centered  delete-dialog"
           id="exampleModal"
           tabIndex="-1"
           aria-labelledby="exampleModalLabel"
@@ -25,7 +25,9 @@ export default class ModalDialog extends React.Component {
                   aria-label="Close"
                 ></button>
               </div>
-              <div className="modal-body">{text}</div>
+              <div className="modal-body">
+                {text} {selectedItem.title}
+              </div>
               <div className="modal-footer">
                 <button
                   type="button"
@@ -42,6 +44,6 @@ export default class ModalDialog extends React.Component {
           </div>
         </div>
       );
-    } else return <div></div>;
+    } else return <></>;
   }
 }
